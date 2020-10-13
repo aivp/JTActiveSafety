@@ -80,7 +80,14 @@ namespace JT808.Protocol.Extensions.JTActiveSafety.MessageBody
                 Retain = reader.ReadByte()
             };
             value.AlarmId = reader.ReadString(32);
-            value.Retain = reader.ReadArray(16).ToArray();
+            if (reader.SrcBuffer.Length - reader.ReaderCount >= 16)
+            {
+                value.Retain = reader.ReadArray(16).ToArray();
+            }
+            else
+            {
+                value.Retain = new byte[16];
+            }
             return value;
         }
 
