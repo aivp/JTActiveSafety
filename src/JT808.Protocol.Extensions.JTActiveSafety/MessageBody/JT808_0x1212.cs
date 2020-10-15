@@ -1,6 +1,7 @@
 ﻿using JT808.Protocol.Formatters;
 using JT808.Protocol.Interfaces;
 using JT808.Protocol.MessagePack;
+using System;
 using System.Text.Json;
 
 namespace JT808.Protocol.Extensions.JTActiveSafety.MessageBody
@@ -14,7 +15,7 @@ namespace JT808.Protocol.Extensions.JTActiveSafety.MessageBody
         /// <summary>
         /// 文件名称长度
         /// </summary>
-        public byte FileNameLength { get; set; }
+        public byte FileNameLength { get { return Convert.ToByte(FileName?.Length ?? 0); } set { } }
         /// <summary>
         /// 文件名称
         /// <文件类型>_<通道号>_<报警类型>_<序号>_<报警编号>.<后缀名>
