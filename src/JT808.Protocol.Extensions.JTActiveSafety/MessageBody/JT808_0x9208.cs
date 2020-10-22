@@ -79,7 +79,7 @@ namespace JT808.Protocol.Extensions.JTActiveSafety.MessageBody
                 AttachCount = reader.ReadByte(),
                 Retain = reader.ReadByte()
             };
-            value.AlarmId = reader.ReadString(32);
+            value.AlarmId = reader.ReadString(32).PadLeft(32, '0');
             if (reader.SrcBuffer.Length - reader.ReaderCount >= 16)
             {
                 value.Retain = reader.ReadArray(16).ToArray();
